@@ -3,16 +3,15 @@ node {
 
     stage('Preparation') {
         git 'https://github.com/agelop/selenium-java-framework.git'
-        mvnHome = tool 'M3'
     }
 
     stage('Build') {
-        sh "'${mvnHome}/bin/mvn' clean package -DskipTests=true"
+        sh "mvn clean package -DskipTests=true"
     }
 
     stage('Test Execution') {
         try {
-            sh "'${mvnHome}/bin/mvn' test -Pweb-execution -Dtarget=local -Dsuite=local -Dtestng.dtd.http=true"
+            sh "mvn test -Pweb-execution -Dtarget=local -Dsuite=local -Dtestng.dtd.http=true"
         } catch (Exception e) {
             currentBuild.result = 'FAILURE'
         } finally {
