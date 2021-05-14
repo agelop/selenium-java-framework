@@ -15,7 +15,7 @@ node {
         } catch (Exception e) {
             currentBuild.result = 'FAILURE'
         } finally {
-            junit '**/target/surefire-reports/TEST-*.xml'
+            junit 'target/surefire-reports/TEST-*.xml'
 
         }
     }
