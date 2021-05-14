@@ -6,12 +6,12 @@ node {
     }
 
     stage('Build') {
-        sh "mvn clean package -DskipTests=true"
+        bat "mvn clean package -DskipTests=true"
     }
 
     stage('Test Execution') {
         try {
-            sh "mvn test -Pweb-execution -Dtarget=local -Dsuite=local -Dtestng.dtd.http=true"
+            bat "mvn test -Pweb-execution -Dtarget=local -Dsuite=local -Dtestng.dtd.http=true"
         } catch (Exception e) {
             currentBuild.result = 'FAILURE'
         } finally {
